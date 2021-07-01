@@ -59,7 +59,7 @@ class Router
      *
      * @return array
      */
-    protected function getMiddelwares()
+    protected function getMiddlewares()
     {
         return app(\Ignite\Application\Kernel::class)->getMiddlewares();
     }
