@@ -3,6 +3,7 @@
 namespace Ignite\Application\Concerns;
 
 use Ignite\Support\Facades\Route;
+use Ignite\Support\FileResponse;
 
 trait ManagesAssets
 {
@@ -127,13 +128,7 @@ trait ManagesAssets
             $info['basename'],
         ]);
 
-        $route = Route::public()->get($uri, function () use ($path, $info) {
-            return response(app('files')->get($path), 200)
-                ->header('Content-Type', [
-                    'js'  => 'application/javascript; charset=utf-8',
-                    'css' => 'text/css',
-                ][$info['extension'] ?? 'plain'] ?? 'text/'.$info['extension'] ?? 'plain');
-        });
+        $route = Route::public()->get($uri, fn () => new FileResponse($path));
 
         return url($route->uri);
     }

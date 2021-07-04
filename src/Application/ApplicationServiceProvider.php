@@ -97,7 +97,7 @@ class ApplicationServiceProvider extends ServiceProvider
      */
     protected function loadAssets()
     {
-        $this->app->afterResolving('lit.app', function ($app) {
+        $this->app->afterResolving('lit.app', function (Application $app) {
             $styles = config('lit.assets.styles') ?? [];
             foreach ($styles as $style) {
                 $app->style($style);
