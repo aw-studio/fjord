@@ -74,7 +74,7 @@ class User extends Authenticatable implements CanResetPasswordContract
      */
     public function sendPasswordResetNotification($token)
     {
-        $link = route('lit.password.reset', $token);
+        $link = route('lit.password.reset.show', $token);
 
         $link .= '?email='.urlencode($this->email);
 
